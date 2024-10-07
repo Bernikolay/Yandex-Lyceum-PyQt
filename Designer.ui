@@ -6,56 +6,53 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>800</width>
-    <height>600</height>
+    <width>1117</width>
+    <height>685</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QPushButton" name="pushButton_3">
-    <property name="enabled">
-     <bool>true</bool>
-    </property>
+   <widget class="QLabel" name="label">
     <property name="geometry">
      <rect>
-      <x>20</x>
-      <y>60</y>
-      <width>211</width>
-      <height>81</height>
+      <x>0</x>
+      <y>-90</y>
+      <width>91</width>
+      <height>571</height>
      </rect>
     </property>
     <property name="text">
      <string/>
     </property>
-    <property name="icon">
-     <iconset>
-      <normaloff>Assets/Buttons/Group 1.png</normaloff>Assets/Buttons/Group 1.png</iconset>
+    <property name="pixmap">
+     <pixmap>Assets/Buttons/bar.png</pixmap>
     </property>
-    <property name="iconSize">
-     <size>
-      <width>200</width>
-      <height>200</height>
-     </size>
+   </widget>
+   <widget class="QLabel" name="label_2">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>300</y>
+      <width>91</width>
+      <height>441</height>
+     </rect>
     </property>
-    <property name="autoRepeat">
-     <bool>false</bool>
+    <property name="text">
+     <string/>
     </property>
-    <property name="autoExclusive">
-     <bool>false</bool>
-    </property>
-    <property name="flat">
-     <bool>true</bool>
+    <property name="pixmap">
+     <pixmap>Assets/Buttons/bar.png</pixmap>
     </property>
    </widget>
    <widget class="QPushButton" name="pushButton">
     <property name="geometry">
      <rect>
-      <x>10</x>
-      <y>160</y>
-      <width>241</width>
-      <height>191</height>
+      <x>0</x>
+      <y>-10</y>
+      <width>91</width>
+      <height>71</height>
      </rect>
     </property>
     <property name="text">
@@ -63,12 +60,70 @@
     </property>
     <property name="icon">
      <iconset>
-      <normaloff>Assets/Buttons/Group 1 (1).png</normaloff>Assets/Buttons/Group 1 (1).png</iconset>
+      <normaloff>Assets/Buttons/run_button.png</normaloff>.Assets/Buttons/run_button.png</iconset>
     </property>
     <property name="iconSize">
      <size>
-      <width>200</width>
-      <height>200</height>
+      <width>99</width>
+      <height>100</height>
+     </size>
+    </property>
+    <property name="flat">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_2">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>90</y>
+      <width>51</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="autoFillBackground">
+     <bool>false</bool>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="icon">
+     <iconset>
+      <normaloff>Assets/Buttons/add_button.png</normaloff>Assets/Buttons/add_button.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>60</width>
+      <height>60</height>
+     </size>
+    </property>
+    <property name="flat">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_3">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>190</y>
+      <width>51</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="autoFillBackground">
+     <bool>false</bool>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="icon">
+     <iconset>
+      <normaloff>Assets/Buttons/delete_button.png</normaloff>Assets/Buttons/delete_button.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>60</width>
+      <height>60</height>
      </size>
     </property>
     <property name="flat">
@@ -76,17 +131,6 @@
     </property>
    </widget>
   </widget>
-  <widget class="QMenuBar" name="menubar">
-   <property name="geometry">
-    <rect>
-     <x>0</x>
-     <y>0</y>
-     <width>800</width>
-     <height>21</height>
-    </rect>
-   </property>
-  </widget>
-  <widget class="QStatusBar" name="statusbar"/>
  </widget>
  <resources/>
  <connections/>
