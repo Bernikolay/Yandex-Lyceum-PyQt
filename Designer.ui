@@ -6,53 +6,37 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1117</width>
-    <height>685</height>
+    <width>1144</width>
+    <height>643</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QLabel" name="label">
+   <widget class="QLabel" name="background">
     <property name="geometry">
      <rect>
-      <x>0</x>
-      <y>-90</y>
-      <width>91</width>
-      <height>571</height>
+      <x>-20</x>
+      <y>-80</y>
+      <width>1281</width>
+      <height>801</height>
      </rect>
     </property>
     <property name="text">
      <string/>
     </property>
     <property name="pixmap">
-     <pixmap>Assets/Buttons/bar.png</pixmap>
+     <pixmap>Assets/BG/bg.png</pixmap>
     </property>
    </widget>
-   <widget class="QLabel" name="label_2">
+   <widget class="QPushButton" name="pause_button">
     <property name="geometry">
      <rect>
-      <x>0</x>
-      <y>300</y>
-      <width>91</width>
-      <height>441</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-    <property name="pixmap">
-     <pixmap>Assets/Buttons/bar.png</pixmap>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="pushButton">
-    <property name="geometry">
-     <rect>
-      <x>0</x>
-      <y>-10</y>
-      <width>91</width>
-      <height>71</height>
+      <x>40</x>
+      <y>40</y>
+      <width>51</width>
+      <height>51</height>
      </rect>
     </property>
     <property name="text">
@@ -60,11 +44,11 @@
     </property>
     <property name="icon">
      <iconset>
-      <normaloff>Assets/Buttons/run_button.png</normaloff>.Assets/Buttons/run_button.png</iconset>
+      <normaloff>Assets/Buttons/pause_button.png</normaloff>Assets/Buttons/pause_button.png</iconset>
     </property>
     <property name="iconSize">
      <size>
-      <width>99</width>
+      <width>100</width>
       <height>100</height>
      </size>
     </property>
@@ -72,58 +56,240 @@
      <bool>true</bool>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_2">
+   <widget class="QPushButton" name="run_bot_button">
     <property name="geometry">
      <rect>
-      <x>20</x>
-      <y>90</y>
+      <x>120</x>
+      <y>40</y>
       <width>51</width>
       <height>51</height>
      </rect>
-    </property>
-    <property name="autoFillBackground">
-     <bool>false</bool>
     </property>
     <property name="text">
      <string/>
     </property>
     <property name="icon">
      <iconset>
-      <normaloff>Assets/Buttons/add_button.png</normaloff>Assets/Buttons/add_button.png</iconset>
+      <normaloff>Assets/Buttons/run_bot_button.png</normaloff>Assets/Buttons/run_bot_button.png</iconset>
     </property>
     <property name="iconSize">
      <size>
-      <width>60</width>
-      <height>60</height>
+      <width>100</width>
+      <height>100</height>
      </size>
     </property>
     <property name="flat">
      <bool>true</bool>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_3">
+   <widget class="QLabel" name="line_label">
     <property name="geometry">
      <rect>
-      <x>20</x>
-      <y>190</y>
+      <x>40</x>
+      <y>100</y>
+      <width>131</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="pixmap">
+     <pixmap>Assets/BG/line.png</pixmap>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="undo_button">
+    <property name="geometry">
+     <rect>
+      <x>40</x>
+      <y>240</y>
       <width>51</width>
       <height>51</height>
      </rect>
-    </property>
-    <property name="autoFillBackground">
-     <bool>false</bool>
     </property>
     <property name="text">
      <string/>
     </property>
     <property name="icon">
      <iconset>
-      <normaloff>Assets/Buttons/delete_button.png</normaloff>Assets/Buttons/delete_button.png</iconset>
+      <normaloff>Assets/Buttons/undo_button.png</normaloff>Assets/Buttons/undo_button.png</iconset>
     </property>
     <property name="iconSize">
      <size>
-      <width>60</width>
-      <height>60</height>
+      <width>100</width>
+      <height>100</height>
+     </size>
+    </property>
+    <property name="flat">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="plus_button">
+    <property name="geometry">
+     <rect>
+      <x>40</x>
+      <y>150</y>
+      <width>51</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="icon">
+     <iconset>
+      <normaloff>Assets/Buttons/plus_button.png</normaloff>Assets/Buttons/plus_button.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>100</width>
+      <height>100</height>
+     </size>
+    </property>
+    <property name="flat">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QLabel" name="api_token_label">
+    <property name="geometry">
+     <rect>
+      <x>230</x>
+      <y>40</y>
+      <width>181</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="pixmap">
+     <pixmap>Assets/Labels/API_token_label.png</pixmap>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_5">
+    <property name="geometry">
+     <rect>
+      <x>420</x>
+      <y>45</y>
+      <width>31</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="icon">
+     <iconset>
+      <normaloff>Assets/Buttons/input_button.png</normaloff>Assets/Buttons/input_button.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>30</width>
+      <height>30</height>
+     </size>
+    </property>
+    <property name="flat">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="undo_button_2">
+    <property name="geometry">
+     <rect>
+      <x>120</x>
+      <y>150</y>
+      <width>51</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="icon">
+     <iconset>
+      <normaloff>Assets/Buttons/undo_button.png</normaloff>Assets/Buttons/undo_button.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>100</width>
+      <height>100</height>
+     </size>
+    </property>
+    <property name="flat">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="plus_button_2">
+    <property name="geometry">
+     <rect>
+      <x>120</x>
+      <y>240</y>
+      <width>51</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="icon">
+     <iconset>
+      <normaloff>Assets/Buttons/plus_button.png</normaloff>Assets/Buttons/plus_button.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>100</width>
+      <height>100</height>
+     </size>
+    </property>
+    <property name="flat">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="plus_button_3">
+    <property name="geometry">
+     <rect>
+      <x>40</x>
+      <y>320</y>
+      <width>51</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="icon">
+     <iconset>
+      <normaloff>Assets/Buttons/plus_button.png</normaloff>Assets/Buttons/plus_button.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>100</width>
+      <height>100</height>
+     </size>
+    </property>
+    <property name="flat">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="undo_button_3">
+    <property name="geometry">
+     <rect>
+      <x>120</x>
+      <y>320</y>
+      <width>51</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="icon">
+     <iconset>
+      <normaloff>Assets/Buttons/undo_button.png</normaloff>Assets/Buttons/undo_button.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>100</width>
+      <height>100</height>
      </size>
     </property>
     <property name="flat">
