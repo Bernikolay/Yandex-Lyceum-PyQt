@@ -373,3 +373,4 @@ QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical {
  <resources/>
  <connections/>
 </ui>
+
