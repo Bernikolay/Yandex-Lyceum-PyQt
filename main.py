@@ -1,6 +1,7 @@
+#pyuic6 Designer.ui -o window2.py
 import sys
 from PyQt6.QtWidgets import QApplication, QMainWindow,QInputDialog,QMessageBox
-from window1 import Ui_MainWindow
+from window2 import Ui_MainWindow
 
 class MyWidget(QMainWindow, Ui_MainWindow):
     def __init__(self):
@@ -10,7 +11,7 @@ class MyWidget(QMainWindow, Ui_MainWindow):
         #Buttons
         self.pushButton_5.clicked.connect(self.add_api_token)
         self.plus_button.clicked.connect(self.add_action)
-        self.plus_button_2.clicked.connect(self.add_action)
+        #self.plus_button_2.clicked.connect(self.add_action)
         self.plus_button_3.clicked.connect(self.add_action)
         self.pause_button.clicked.connect(self.pause)
         self.run_bot_button.clicked.connect(self.run_bot)
