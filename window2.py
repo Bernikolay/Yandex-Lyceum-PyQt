@@ -14,11 +14,92 @@ class Ui_MainWindow(object):
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(1054, 639)
         self.centralwidget = QtWidgets.QWidget(parent=MainWindow)
+        self.centralwidget.setEnabled(True)
+        self.centralwidget.setAutoFillBackground(False)
         self.centralwidget.setObjectName("centralwidget")
         self.gridLayout = QtWidgets.QGridLayout(self.centralwidget)
         self.gridLayout.setObjectName("gridLayout")
         self.tabWidget = QtWidgets.QTabWidget(parent=self.centralwidget)
+        self.tabWidget.setStyleSheet("QTabWidget::pane {\n"
+"    background: white;\n"
+"    border:5px white;\n"
+"}\n"
+"\n"
+"QTabBar::tab {\n"
+"    background-color: rgb(255, 255, 255);\n"
+"    border-style: outset;\n"
+"    border-width: 2px;\n"
+"    border-radius: 10px;\n"
+"    border-color:rgba(255, 255, 255, 0) ;\n"
+"    font: bold 14px;\n"
+"    min-width: 10em;\n"
+"    padding:3px;\n"
+"    \n"
+"}\n"
+"QTabBar::tab:selected {\n"
+"    background-color: rgb(102, 88, 255);\n"
+"}\n"
+"QTabBar::tab:!selected:hover {\n"
+"    background: rgb(135, 156, 238);\n"
+"}")
         self.tabWidget.setObjectName("tabWidget")
+        self.tab_2 = QtWidgets.QWidget()
+        self.tab_2.setObjectName("tab_2")
+        self.verticalLayout_5 = QtWidgets.QVBoxLayout(self.tab_2)
+        self.verticalLayout_5.setObjectName("verticalLayout_5")
+        self.groupBox = QtWidgets.QGroupBox(parent=self.tab_2)
+        self.groupBox.setObjectName("groupBox")
+        self.verticalLayout_4 = QtWidgets.QVBoxLayout(self.groupBox)
+        self.verticalLayout_4.setObjectName("verticalLayout_4")
+        self.label = QtWidgets.QLabel(parent=self.groupBox)
+        self.label.setStyleSheet("")
+        self.label.setObjectName("label")
+        self.verticalLayout_4.addWidget(self.label)
+        self.verticalLayout_5.addWidget(self.groupBox)
+        self.groupBox_2 = QtWidgets.QGroupBox(parent=self.tab_2)
+        self.groupBox_2.setObjectName("groupBox_2")
+        self.horizontalLayout_2 = QtWidgets.QHBoxLayout(self.groupBox_2)
+        self.horizontalLayout_2.setObjectName("horizontalLayout_2")
+        self.pushButton_2 = QtWidgets.QPushButton(parent=self.groupBox_2)
+        self.pushButton_2.setObjectName("pushButton_2")
+        self.horizontalLayout_2.addWidget(self.pushButton_2)
+        self.pushButton_4 = QtWidgets.QPushButton(parent=self.groupBox_2)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Policy.Minimum, QtWidgets.QSizePolicy.Policy.Maximum)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.pushButton_4.sizePolicy().hasHeightForWidth())
+        self.pushButton_4.setSizePolicy(sizePolicy)
+        self.pushButton_4.setObjectName("pushButton_4")
+        self.horizontalLayout_2.addWidget(self.pushButton_4)
+        self.toolButton = QtWidgets.QToolButton(parent=self.groupBox_2)
+        self.toolButton.setObjectName("toolButton")
+        self.horizontalLayout_2.addWidget(self.toolButton)
+        self.verticalLayout_5.addWidget(self.groupBox_2)
+        self.groupBox_3 = QtWidgets.QGroupBox(parent=self.tab_2)
+        self.groupBox_3.setObjectName("groupBox_3")
+        self.verticalLayout_3 = QtWidgets.QVBoxLayout(self.groupBox_3)
+        self.verticalLayout_3.setObjectName("verticalLayout_3")
+        self.label_2 = QtWidgets.QLabel(parent=self.groupBox_3)
+        self.label_2.setObjectName("label_2")
+        self.verticalLayout_3.addWidget(self.label_2)
+        self.comboBox = QtWidgets.QComboBox(parent=self.groupBox_3)
+        self.comboBox.setMinimumSize(QtCore.QSize(104, 40))
+        self.comboBox.setStyleSheet("QComboBox {\n"
+"border: 0px;\n"
+"border-radius: 5px;\n"
+"background:qlineargradient(spread:pad, x1:0, y1:1, x2:0, y2:0, stop:0 rgba(100, 57, 255, 150), stop:0.991071 rgba(79, 117, 255, 150));;\n"
+"padding: 1px 23px 1px 3px;\n"
+"min-width: 6em;\n"
+"\n"
+"}")
+        self.comboBox.setObjectName("comboBox")
+        self.comboBox.addItem("")
+        self.comboBox.addItem("")
+        self.verticalLayout_3.addWidget(self.comboBox)
+        spacerItem = QtWidgets.QSpacerItem(20, 130, QtWidgets.QSizePolicy.Policy.Minimum, QtWidgets.QSizePolicy.Policy.Fixed)
+        self.verticalLayout_3.addItem(spacerItem)
+        self.verticalLayout_5.addWidget(self.groupBox_3)
+        self.tabWidget.addTab(self.tab_2, "")
         self.tab = QtWidgets.QWidget()
         self.tab.setObjectName("tab")
         self.gridLayout_2 = QtWidgets.QGridLayout(self.tab)
@@ -39,8 +120,8 @@ class Ui_MainWindow(object):
         self.pushButton_5.setFlat(True)
         self.pushButton_5.setObjectName("pushButton_5")
         self.horizontalLayout.addWidget(self.pushButton_5)
-        spacerItem = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Minimum)
-        self.horizontalLayout.addItem(spacerItem)
+        spacerItem1 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Minimum)
+        self.horizontalLayout.addItem(spacerItem1)
         self.gridLayout_2.addLayout(self.horizontalLayout, 0, 1, 1, 1)
         self.verticalLayout = QtWidgets.QVBoxLayout()
         self.verticalLayout.setSpacing(9)
@@ -99,12 +180,16 @@ class Ui_MainWindow(object):
         self.plus_button_3.setFlat(True)
         self.plus_button_3.setObjectName("plus_button_3")
         self.verticalLayout.addWidget(self.plus_button_3)
-        spacerItem1 = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Policy.Minimum, QtWidgets.QSizePolicy.Policy.Expanding)
-        self.verticalLayout.addItem(spacerItem1)
+        spacerItem2 = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Policy.Minimum, QtWidgets.QSizePolicy.Policy.Expanding)
+        self.verticalLayout.addItem(spacerItem2)
         self.gridLayout_2.addLayout(self.verticalLayout, 0, 0, 3, 1)
         self.scrollArea = QtWidgets.QScrollArea(parent=self.tab)
         self.scrollArea.setAutoFillBackground(False)
-        self.scrollArea.setStyleSheet("/* VERTICAL SCROLLBAR */\n"
+        self.scrollArea.setStyleSheet("QScrollArea {\n"
+"    border: 10px;\n"
+"    border-radius: 7px;\n"
+"    }\n"
+"/* VERTICAL SCROLLBAR */\n"
 " QScrollBar:vertical {\n"
 "    border: none;\n"
 "    background: rgb(213, 213, 213);\n"
@@ -116,7 +201,7 @@ class Ui_MainWindow(object):
 "/*  HANDLE BAR VERTICAL */\n"
 "QScrollBar::handle:vertical {    \n"
 "    background-color:qlineargradient(spread:pad, x1:0, y1:1, x2:0, y2:0, stop:0 rgba(100, 57, 255, 150), stop:0.991071 rgba(79, 117, 255, 150));\n"
-"    min-height: 30px;\n"
+"    min-height: 10px;\n"
 "    border-radius: 7px;\n"
 "}\n"
 "QScrollBar::handle:vertical:hover{    \n"
@@ -175,7 +260,7 @@ class Ui_MainWindow(object):
         self.scrollArea.setWidgetResizable(True)
         self.scrollArea.setObjectName("scrollArea")
         self.scrollAreaWidgetContents_4 = QtWidgets.QWidget()
-        self.scrollAreaWidgetContents_4.setGeometry(QtCore.QRect(0, 0, 918, 724))
+        self.scrollAreaWidgetContents_4.setGeometry(QtCore.QRect(0, 0, 926, 724))
         self.scrollAreaWidgetContents_4.setObjectName("scrollAreaWidgetContents_4")
         self.verticalLayout_2 = QtWidgets.QVBoxLayout(self.scrollAreaWidgetContents_4)
         self.verticalLayout_2.setObjectName("verticalLayout_2")
@@ -190,10 +275,7 @@ class Ui_MainWindow(object):
         self.scrollArea.setWidget(self.scrollAreaWidgetContents_4)
         self.gridLayout_2.addWidget(self.scrollArea, 2, 1, 1, 1)
         self.tabWidget.addTab(self.tab, "")
-        self.tab_2 = QtWidgets.QWidget()
-        self.tab_2.setObjectName("tab_2")
-        self.tabWidget.addTab(self.tab_2, "")
-        self.gridLayout.addWidget(self.tabWidget, 0, 0, 1, 1)
+        self.gridLayout.addWidget(self.tabWidget, 1, 0, 1, 1)
         MainWindow.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(MainWindow)
@@ -203,8 +285,17 @@ class Ui_MainWindow(object):
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
+        self.groupBox.setTitle(_translate("MainWindow", "GroupBox"))
+        self.label.setText(_translate("MainWindow", "Welcome"))
+        self.groupBox_2.setTitle(_translate("MainWindow", "GroupBox"))
+        self.pushButton_2.setText(_translate("MainWindow", "PushButton"))
+        self.pushButton_4.setText(_translate("MainWindow", "PushButton"))
+        self.toolButton.setText(_translate("MainWindow", "..."))
+        self.groupBox_3.setTitle(_translate("MainWindow", "GroupBox"))
+        self.label_2.setText(_translate("MainWindow", "TextLabel"))
+        self.comboBox.setItemText(0, _translate("MainWindow", "Bot 1"))
+        self.comboBox.setItemText(1, _translate("MainWindow", "Bot 2"))
+        self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_2), _translate("MainWindow", "Tab 2"))
         self.pushButton.setText(_translate("MainWindow", "PushButton"))
         self.pushButton_3.setText(_translate("MainWindow", "PushButton"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab), _translate("MainWindow", "Tab 1"))
-        self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_2), _translate("MainWindow", "Tab 2"))
-
