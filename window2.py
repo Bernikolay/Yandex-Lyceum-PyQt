@@ -34,7 +34,7 @@ class Ui_MainWindow(object):
 "    font: bold 14px;\n"
 "    min-width: 10em;\n"
 "    padding:3px;\n"
-"    \n"
+"\n"
 "}\n"
 "QTabBar::tab:selected {\n"
 "    background-color: rgb(102, 88, 255);\n"
@@ -52,7 +52,9 @@ class Ui_MainWindow(object):
         self.verticalLayout_4 = QtWidgets.QVBoxLayout(self.groupBox)
         self.verticalLayout_4.setObjectName("verticalLayout_4")
         self.label = QtWidgets.QLabel(parent=self.groupBox)
-        self.label.setStyleSheet("")
+        self.label.setStyleSheet("font: 63 55pt \"Oceanwide QLt\";\n"
+"color:rgb(13, 9, 39);\n"
+"")
         self.label.setObjectName("label")
         self.verticalLayout_4.addWidget(self.label)
         self.verticalLayout_5.addWidget(self.groupBox)
@@ -60,7 +62,21 @@ class Ui_MainWindow(object):
         self.groupBox_2.setObjectName("groupBox_2")
         self.horizontalLayout_2 = QtWidgets.QHBoxLayout(self.groupBox_2)
         self.horizontalLayout_2.setObjectName("horizontalLayout_2")
+        self.toolButton = QtWidgets.QToolButton(parent=self.groupBox_2)
+        self.toolButton.setStyleSheet("QToolButton{\n"
+"    border-radius: 10px;\n"
+"    height: 30px;\n"
+"    width: 50px;\n"
+"    background-color: rgb(162, 82, 251);\n"
+"}")
+        self.toolButton.setObjectName("toolButton")
+        self.horizontalLayout_2.addWidget(self.toolButton)
         self.pushButton_2 = QtWidgets.QPushButton(parent=self.groupBox_2)
+        self.pushButton_2.setStyleSheet("QPushButton{\n"
+"    border-radius: 5px;\n"
+"    height: 30px;\n"
+"    background-color: rgb(115, 114, 243);\n"
+"}")
         self.pushButton_2.setObjectName("pushButton_2")
         self.horizontalLayout_2.addWidget(self.pushButton_2)
         self.pushButton_4 = QtWidgets.QPushButton(parent=self.groupBox_2)
@@ -69,11 +85,13 @@ class Ui_MainWindow(object):
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.pushButton_4.sizePolicy().hasHeightForWidth())
         self.pushButton_4.setSizePolicy(sizePolicy)
+        self.pushButton_4.setStyleSheet("QPushButton{\n"
+"    border-radius: 5px;\n"
+"    height: 30px;\n"
+"    background-color:rgb(64, 149, 233);\n"
+"}")
         self.pushButton_4.setObjectName("pushButton_4")
         self.horizontalLayout_2.addWidget(self.pushButton_4)
-        self.toolButton = QtWidgets.QToolButton(parent=self.groupBox_2)
-        self.toolButton.setObjectName("toolButton")
-        self.horizontalLayout_2.addWidget(self.toolButton)
         self.verticalLayout_5.addWidget(self.groupBox_2)
         self.groupBox_3 = QtWidgets.QGroupBox(parent=self.tab_2)
         self.groupBox_3.setObjectName("groupBox_3")
@@ -87,7 +105,7 @@ class Ui_MainWindow(object):
         self.comboBox.setStyleSheet("QComboBox {\n"
 "border: 0px;\n"
 "border-radius: 5px;\n"
-"background:qlineargradient(spread:pad, x1:0, y1:1, x2:0, y2:0, stop:0 rgba(100, 57, 255, 150), stop:0.991071 rgba(79, 117, 255, 150));;\n"
+"background:qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(79, 117, 255, 255), stop:0.0113636 rgba(182, 68, 255, 255), stop:1 rgba(0, 193, 221, 255));\n"
 "padding: 1px 23px 1px 3px;\n"
 "min-width: 6em;\n"
 "\n"
@@ -106,11 +124,12 @@ class Ui_MainWindow(object):
         self.gridLayout_2.setObjectName("gridLayout_2")
         self.horizontalLayout = QtWidgets.QHBoxLayout()
         self.horizontalLayout.setObjectName("horizontalLayout")
-        self.api_token_label = QtWidgets.QLabel(parent=self.tab)
-        self.api_token_label.setText("")
-        self.api_token_label.setPixmap(QtGui.QPixmap("Assets/Labels/API_token_label.png"))
-        self.api_token_label.setObjectName("api_token_label")
-        self.horizontalLayout.addWidget(self.api_token_label)
+        self.label_3 = QtWidgets.QLabel(parent=self.tab)
+        self.label_3.setStyleSheet("font: 63 25pt \"Oceanwide QLt\";\n"
+"color:rgb(54, 54, 54);\n"
+"")
+        self.label_3.setObjectName("label_3")
+        self.horizontalLayout.addWidget(self.label_3)
         self.pushButton_5 = QtWidgets.QPushButton(parent=self.tab)
         self.pushButton_5.setText("")
         icon = QtGui.QIcon()
@@ -199,16 +218,17 @@ class Ui_MainWindow(object):
 " }\n"
 "\n"
 "/*  HANDLE BAR VERTICAL */\n"
-"QScrollBar::handle:vertical {    \n"
+"QScrollBar::handle:vertical {\n"
 "    background-color:qlineargradient(spread:pad, x1:0, y1:1, x2:0, y2:0, stop:0 rgba(100, 57, 255, 150), stop:0.991071 rgba(79, 117, 255, 150));\n"
 "    min-height: 10px;\n"
+"    max-height: 10px;\n"
 "    border-radius: 7px;\n"
 "}\n"
-"QScrollBar::handle:vertical:hover{    \n"
+"QScrollBar::handle:vertical:hover{\n"
 "    background-color:qlineargradient(spread:pad, x1:0, y1:1, x2:0, y2:0, stop:0 rgba(100, 57, 255, 200), stop:0.991071 rgba(79, 117, 255, 200));\n"
 "\n"
 "}\n"
-"QScrollBar::handle:vertical:pressed {    \n"
+"QScrollBar::handle:vertical:pressed {\n"
 "    background-color:qlineargradient(spread:pad, x1:0, y1:1, x2:0, y2:0, stop:0 rgba(100, 57, 255, 255), stop:0.991071 rgba(79, 117, 255, 255));\n"
 "\n"
 "\n"
@@ -225,10 +245,10 @@ class Ui_MainWindow(object):
 "    subcontrol-position: top;\n"
 "    subcontrol-origin: margin;\n"
 "}\n"
-"QScrollBar::sub-line:vertical:hover {    \n"
+"QScrollBar::sub-line:vertical:hover {\n"
 "    background-color:rgb(213, 213, 213);\n"
 "}\n"
-"QScrollBar::sub-line:vertical:pressed {    \n"
+"QScrollBar::sub-line:vertical:pressed {\n"
 "    background-color:  rgb(235, 235, 235);\n"
 "}\n"
 "\n"
@@ -242,10 +262,10 @@ class Ui_MainWindow(object):
 "    subcontrol-position: bottom;\n"
 "    subcontrol-origin: margin;\n"
 "}\n"
-"QScrollBar::add-line:vertical:hover {    \n"
+"QScrollBar::add-line:vertical:hover {\n"
 "    background-color: rgb(213, 213, 213);\n"
 "}\n"
-"QScrollBar::add-line:vertical:pressed {    \n"
+"QScrollBar::add-line:vertical:pressed {\n"
 "    background-color: rgb(235, 235, 235);\n"
 "}\n"
 "\n"
@@ -266,10 +286,22 @@ class Ui_MainWindow(object):
         self.verticalLayout_2.setObjectName("verticalLayout_2")
         self.pushButton = QtWidgets.QPushButton(parent=self.scrollAreaWidgetContents_4)
         self.pushButton.setMinimumSize(QtCore.QSize(100, 350))
+        self.pushButton.setStyleSheet("QPushButton{\n"
+"    border-radius: 70px;\n"
+"    background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(96, 86, 255, 255), stop:1 rgba(179, 146, 221, 255));\n"
+"    font: 63 56pt \"Oceanwide QLt\";\n"
+"    color: rgb(255, 255, 255);\n"
+"}")
         self.pushButton.setObjectName("pushButton")
         self.verticalLayout_2.addWidget(self.pushButton)
         self.pushButton_3 = QtWidgets.QPushButton(parent=self.scrollAreaWidgetContents_4)
         self.pushButton_3.setMinimumSize(QtCore.QSize(100, 350))
+        self.pushButton_3.setStyleSheet("QPushButton{\n"
+"    border-radius: 70px;\n"
+"    background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(96, 86, 255, 255), stop:1 rgba(179, 146, 221, 255));\n"
+"    font: 63 56pt \"Oceanwide QLt\";\n"
+"    color: rgb(255, 255, 255);\n"
+"}")
         self.pushButton_3.setObjectName("pushButton_3")
         self.verticalLayout_2.addWidget(self.pushButton_3)
         self.scrollArea.setWidget(self.scrollAreaWidgetContents_4)
@@ -286,16 +318,17 @@ class Ui_MainWindow(object):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
         self.groupBox.setTitle(_translate("MainWindow", "GroupBox"))
-        self.label.setText(_translate("MainWindow", "Welcome"))
+        self.label.setText(_translate("MainWindow", "Welcome......"))
         self.groupBox_2.setTitle(_translate("MainWindow", "GroupBox"))
+        self.toolButton.setText(_translate("MainWindow", "..."))
         self.pushButton_2.setText(_translate("MainWindow", "PushButton"))
         self.pushButton_4.setText(_translate("MainWindow", "PushButton"))
-        self.toolButton.setText(_translate("MainWindow", "..."))
         self.groupBox_3.setTitle(_translate("MainWindow", "GroupBox"))
         self.label_2.setText(_translate("MainWindow", "TextLabel"))
         self.comboBox.setItemText(0, _translate("MainWindow", "Bot 1"))
         self.comboBox.setItemText(1, _translate("MainWindow", "Bot 2"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_2), _translate("MainWindow", "Tab 2"))
+        self.label_3.setText(_translate("MainWindow", "API token:"))
         self.pushButton.setText(_translate("MainWindow", "PushButton"))
         self.pushButton_3.setText(_translate("MainWindow", "PushButton"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab), _translate("MainWindow", "Tab 1"))
