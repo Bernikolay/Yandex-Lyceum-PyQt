@@ -163,7 +163,8 @@ background:qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(79, 1
 padding: 1px 23px 1px 3px;
 min-width: 6em;
 
-}</string>
+}
+QComboBox QAbstractItemView {background:qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(79, 117, 255, 255), stop:0.0113636 rgba(182, 68, 255, 255), stop:1 rgba(0, 193, 221, 255));}</string>
              </property>
              <item>
               <property name="text">
@@ -509,63 +510,50 @@ QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical {
              <x>0</x>
              <y>0</y>
              <width>926</width>
-             <height>724</height>
+             <height>532</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_2">
             <item>
-             <widget class="QPushButton" name="pushButton">
+             <widget class="QPushButton" name="welcome_message_button">
               <property name="sizePolicy">
-               <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+               <sizepolicy hsizetype="Minimum" vsizetype="Maximum">
                 <horstretch>0</horstretch>
                 <verstretch>0</verstretch>
                </sizepolicy>
               </property>
               <property name="minimumSize">
                <size>
-                <width>400</width>
-                <height>350</height>
+                <width>500</width>
+                <height>120</height>
                </size>
               </property>
               <property name="styleSheet">
                <string notr="true">QPushButton{
-	border-radius: 70px;
+	border-radius: 40px;
 	background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(96, 86, 255, 255), stop:1 rgba(179, 146, 221, 255));
 	font: 63 56pt &quot;Oceanwide QLt&quot;;
 	color: rgb(255, 255, 255);
-}</string>
+}
+</string>
               </property>
               <property name="text">
-               <string>PushButton</string>
+               <string>/welcome Message</string>
               </property>
              </widget>
             </item>
             <item>
-             <widget class="QPushButton" name="pushButton_3">
-              <property name="sizePolicy">
-               <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
-                <horstretch>0</horstretch>
-                <verstretch>0</verstretch>
-               </sizepolicy>
+             <spacer name="verticalSpacer_3">
+              <property name="orientation">
+               <enum>Qt::Vertical</enum>
               </property>
-              <property name="minimumSize">
+              <property name="sizeHint" stdset="0">
                <size>
-                <width>100</width>
-                <height>350</height>
+                <width>20</width>
+                <height>40</height>
                </size>
               </property>
-              <property name="styleSheet">
-               <string notr="true">QPushButton{
-	border-radius: 70px;
-	background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(96, 86, 255, 255), stop:1 rgba(179, 146, 221, 255));
-	font: 63 56pt &quot;Oceanwide QLt&quot;;
-	color: rgb(255, 255, 255);
-}</string>
-              </property>
-              <property name="text">
-               <string>PushButton</string>
-              </property>
-             </widget>
+             </spacer>
             </item>
            </layout>
           </widget>

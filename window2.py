@@ -109,7 +109,8 @@ class Ui_MainWindow(object):
 "padding: 1px 23px 1px 3px;\n"
 "min-width: 6em;\n"
 "\n"
-"}")
+"}\n"
+"QComboBox QAbstractItemView {background:qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(79, 117, 255, 255), stop:0.0113636 rgba(182, 68, 255, 255), stop:1 rgba(0, 193, 221, 255));}")
         self.comboBox.setObjectName("comboBox")
         self.comboBox.addItem("")
         self.comboBox.addItem("")
@@ -280,30 +281,28 @@ class Ui_MainWindow(object):
         self.scrollArea.setWidgetResizable(True)
         self.scrollArea.setObjectName("scrollArea")
         self.scrollAreaWidgetContents_4 = QtWidgets.QWidget()
-        self.scrollAreaWidgetContents_4.setGeometry(QtCore.QRect(0, 0, 926, 724))
+        self.scrollAreaWidgetContents_4.setGeometry(QtCore.QRect(0, 0, 926, 532))
         self.scrollAreaWidgetContents_4.setObjectName("scrollAreaWidgetContents_4")
         self.verticalLayout_2 = QtWidgets.QVBoxLayout(self.scrollAreaWidgetContents_4)
         self.verticalLayout_2.setObjectName("verticalLayout_2")
-        self.pushButton = QtWidgets.QPushButton(parent=self.scrollAreaWidgetContents_4)
-        self.pushButton.setMinimumSize(QtCore.QSize(100, 350))
-        self.pushButton.setStyleSheet("QPushButton{\n"
-"    border-radius: 70px;\n"
+        self.welcome_message_button = QtWidgets.QPushButton(parent=self.scrollAreaWidgetContents_4)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Policy.Minimum, QtWidgets.QSizePolicy.Policy.Maximum)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.welcome_message_button.sizePolicy().hasHeightForWidth())
+        self.welcome_message_button.setSizePolicy(sizePolicy)
+        self.welcome_message_button.setMinimumSize(QtCore.QSize(500, 120))
+        self.welcome_message_button.setStyleSheet("QPushButton{\n"
+"    border-radius: 40px;\n"
 "    background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(96, 86, 255, 255), stop:1 rgba(179, 146, 221, 255));\n"
 "    font: 63 56pt \"Oceanwide QLt\";\n"
 "    color: rgb(255, 255, 255);\n"
-"}")
-        self.pushButton.setObjectName("pushButton")
-        self.verticalLayout_2.addWidget(self.pushButton)
-        self.pushButton_3 = QtWidgets.QPushButton(parent=self.scrollAreaWidgetContents_4)
-        self.pushButton_3.setMinimumSize(QtCore.QSize(100, 350))
-        self.pushButton_3.setStyleSheet("QPushButton{\n"
-"    border-radius: 70px;\n"
-"    background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(96, 86, 255, 255), stop:1 rgba(179, 146, 221, 255));\n"
-"    font: 63 56pt \"Oceanwide QLt\";\n"
-"    color: rgb(255, 255, 255);\n"
-"}")
-        self.pushButton_3.setObjectName("pushButton_3")
-        self.verticalLayout_2.addWidget(self.pushButton_3)
+"}\n"
+"")
+        self.welcome_message_button.setObjectName("welcome_message_button")
+        self.verticalLayout_2.addWidget(self.welcome_message_button)
+        spacerItem3 = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Policy.Minimum, QtWidgets.QSizePolicy.Policy.Expanding)
+        self.verticalLayout_2.addItem(spacerItem3)
         self.scrollArea.setWidget(self.scrollAreaWidgetContents_4)
         self.gridLayout_2.addWidget(self.scrollArea, 2, 1, 1, 1)
         self.tabWidget.addTab(self.tab, "")
@@ -311,7 +310,7 @@ class Ui_MainWindow(object):
         MainWindow.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(MainWindow)
-        self.tabWidget.setCurrentIndex(0)
+        self.tabWidget.setCurrentIndex(1)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
     def retranslateUi(self, MainWindow):
@@ -329,6 +328,5 @@ class Ui_MainWindow(object):
         self.comboBox.setItemText(1, _translate("MainWindow", "Bot 2"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_2), _translate("MainWindow", "Tab 2"))
         self.label_3.setText(_translate("MainWindow", "API token:"))
-        self.pushButton.setText(_translate("MainWindow", "PushButton"))
-        self.pushButton_3.setText(_translate("MainWindow", "PushButton"))
+        self.welcome_message_button.setText(_translate("MainWindow", "/welcome Message"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab), _translate("MainWindow", "Tab 1"))

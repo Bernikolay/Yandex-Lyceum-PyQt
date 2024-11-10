@@ -1,7 +1,9 @@
 #pyuic6 Designer.ui -o window2.py
 import sys
-from PyQt6.QtWidgets import (QApplication, QMainWindow,
-                             QInputDialog, QMessageBox, QPushButton)
+from PyQt6 import QtCore, QtGui, QtWidgets
+from PyQt6.QtCore import Qt
+from PyQt6.QtWidgets import (QApplication, QMainWindow, QDialog, QVBoxLayout, QComboBox,
+                             QInputDialog, QMessageBox, QPushButton, QLabel)
 
 from window2 import Ui_MainWindow
 
@@ -24,25 +26,43 @@ class MyWidget(QMainWindow, Ui_MainWindow):
             print(self.api_token)
 
     def add_action(self):
+        dialog = QDialog(self)
+        dialog.setWindowTitle("Выбор действия")
+
+        # Устанавливаем стиль для диалогового окна
+        dialog.setStyleSheet("QInputDialog{background-color: rgb(61, 65, 89);}")
+
         action, ok_pressed = QInputDialog.getItem(
-            self, "Ввод", "Выбор действия:",
+            dialog, "Ввод", "",
             ("Текст-Текст", "B", "C", "D"), 0, False)
+
         if ok_pressed:
             print(action)
-        if action == "Текст-Текст":
-            self.button_layout = self.scrollAreaWidgetContents_4.layout()
-            new_button = QPushButton(f"Button {self.button_layout.count() + 1}", self)
-            new_button.setStyleSheet("QPushButton"
-                                    "{"
-	                                    "border-radius: 70px;"
-	                                    "background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1,"
-                                        " y2:0, stop:0 rgba(96, 86, 255, 255), stop:1 "
-                                        "rgba(179, 146, 221, 255));"
-	                                    'font: 63 56pt "Oceanwide QLt";'
-	                                    "color: rgb(255, 255, 255);"
-                                     "}")
-            self.button_layout.addWidget(new_button)
+            if action == "Текст-Текст":
+                self.button_layout = self.scrollAreaWidgetContents_4.layout()
+                new_button = QPushButton(f"/команда {self.button_layout.count() - 2}", self)
+                new_button.setSizePolicy(
+                    QtWidgets.QSizePolicy.Policy.Minimum,
+                    QtWidgets.QSizePolicy.Policy.Maximum
+                )
+                new_button.setMinimumSize(500, 80)
 
+                new_button.setStyleSheet("QPushButton"
+                                         "{"
+                                         "border-radius: 20px;"
+                                         "background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1,"
+                                         " y2:0, stop:0 rgba(96, 86, 255, 255), stop:1 "
+                                         "rgba(179, 146, 221, 255));"
+                                         'font: 63 56pt "Oceanwide QLt";'
+                                         "color: rgb(255, 255, 255);"
+                                         "}")
+                #self.button_layout.addWidget(new_button)
+
+                # Определяем позицию для вставки
+                mid_index = self.button_layout.count() - 1
+
+                # Вставляем кнопку
+                self.button_layout.insertWidget(mid_index, new_button)
 
     def pause(self):
         self.msg = QMessageBox()
