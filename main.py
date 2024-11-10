@@ -1,6 +1,8 @@
 #pyuic6 Designer.ui -o window2.py
 import sys
-from PyQt6.QtWidgets import QApplication, QMainWindow,QInputDialog,QMessageBox
+from PyQt6.QtWidgets import (QApplication, QMainWindow,
+                             QInputDialog, QMessageBox, QPushButton)
+
 from window2 import Ui_MainWindow
 
 class MyWidget(QMainWindow, Ui_MainWindow):
@@ -24,9 +26,23 @@ class MyWidget(QMainWindow, Ui_MainWindow):
     def add_action(self):
         action, ok_pressed = QInputDialog.getItem(
             self, "Ввод", "Выбор действия:",
-            ("A", "B", "C", "D"), 0, False)
+            ("Текст-Текст", "B", "C", "D"), 0, False)
         if ok_pressed:
             print(action)
+        if action == "Текст-Текст":
+            self.button_layout = self.scrollAreaWidgetContents_4.layout()
+            new_button = QPushButton(f"Button {self.button_layout.count() + 1}", self)
+            new_button.setStyleSheet("QPushButton"
+                                    "{"
+	                                    "border-radius: 70px;"
+	                                    "background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1,"
+                                        " y2:0, stop:0 rgba(96, 86, 255, 255), stop:1 "
+                                        "rgba(179, 146, 221, 255));"
+	                                    'font: 63 56pt "Oceanwide QLt";'
+	                                    "color: rgb(255, 255, 255);"
+                                     "}")
+            self.button_layout.addWidget(new_button)
+
 
     def pause(self):
         self.msg = QMessageBox()

@@ -515,9 +515,15 @@ QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical {
            <layout class="QVBoxLayout" name="verticalLayout_2">
             <item>
              <widget class="QPushButton" name="pushButton">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
               <property name="minimumSize">
                <size>
-                <width>100</width>
+                <width>400</width>
                 <height>350</height>
                </size>
               </property>
@@ -536,6 +542,12 @@ QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical {
             </item>
             <item>
              <widget class="QPushButton" name="pushButton_3">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
               <property name="minimumSize">
                <size>
                 <width>100</width>
