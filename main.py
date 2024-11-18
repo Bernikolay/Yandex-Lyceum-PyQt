@@ -170,10 +170,11 @@ class MyWidget(QMainWindow, Ui_MainWindow):
         self.msg.exec()
 
     def run_bot(self):
-        self.msg = QMessageBox()
-        self.msg.setWindowTitle("Запуск")
-        self.msg.setText("Бот работает.")
-        self.msg.exec()
+        self.window1 = ChatApp()
+        if self.window1.isVisible():
+            self.window1.hide()
+        else:
+            self.window1.show()
 
 class ChatApp(QtWidgets.QWidget):
     def __init__(self):
