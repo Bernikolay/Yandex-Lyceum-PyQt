@@ -1,6 +1,7 @@
 #pyuic6 Designer.ui -o main_ui.py
 #pyuic6 CMDedit.ui -o cmd_ui.py
 #pyuic6 CMD_start_edit.ui -o cmd_start_ui.py
+import sqlite3
 import sys
 from PyQt6 import QtCore, QtGui, QtWidgets
 from PyQt6.QtWidgets import (QApplication,
@@ -17,6 +18,8 @@ from PyQt6.QtWidgets import (QApplication,
 from main_ui import Ui_MainWindow
 from cmd_ui import Ui_Form
 from cmd_start_ui import Ui_Form as Ui_Form_start
+
+current_button = 0
 
 class CMDStartEdit(QWidget, Ui_Form_start):
     def __init__(self):
@@ -41,7 +44,7 @@ class CMDStartEdit(QWidget, Ui_Form_start):
     def img_msg(self):
         self.lineEdit_2.setText("Укажите путь к картинке!")
 
-
+#CMD_EDIT
 class AnotherWindow(QWidget, Ui_Form):
     def __init__(self):
         super().__init__()
@@ -51,11 +54,20 @@ class AnotherWindow(QWidget, Ui_Form):
         self.checkBox_output_image.stateChanged.connect(self.on_checkbox_changed)
 
     def get_text(self):
-        # lineEdit
-        text = self.lineEditInput.text()
+        #lineEdit
+        global current_button
+        text_input = self.lineEditInput.text()
         text_output = self.lineEditOutput.text()
-        print(text)
+        print(text_input)
         print(text_output)
+        print(current_button)
+        add_input_to_database(current_button, text_input)
+        is_img_ = 0
+        if self.image is True:
+            is_img_ = 1
+        else:
+            is_img_ = 0
+        add_output_to_database(current_button, text_output)
 
     def on_checkbox_changed(self):
         self.image = not self.image
@@ -120,7 +132,7 @@ class MyWidget(QMainWindow, Ui_MainWindow):
                                          "color: rgb(255, 255, 255);"
                                          "}")
 
-                # Подключаем сигнал clicked к слоту print_one
+                # Подключаем сигнал clicked к слоту
                 new_button.clicked.connect(self.edit_cmd)
 
                 # Определяем позицию для вставки
@@ -137,6 +149,10 @@ class MyWidget(QMainWindow, Ui_MainWindow):
         if self.window1.isVisible():
             self.window1.hide()
         else:
+            global current_button
+            sending_button = self.sender()
+            print(sending_button.text())
+            current_button = int(sending_button.text()[-1])
             self.window1.show()
 
     def edit_cmd_start(self):
@@ -159,7 +175,193 @@ class MyWidget(QMainWindow, Ui_MainWindow):
         self.msg.setText("Бот работает.")
         self.msg.exec()
 
+class ChatApp(QtWidgets.QWidget):
+    def __init__(self):
+        super().__init__()
+
+        self.setWindowTitle("Chat App")
+        self.setGeometry(100, 100, 400, 600)
+
+        # Основной вертикальный макет
+        self.layout = QtWidgets.QVBoxLayout(self)
+
+        # Создаем QScrollArea для сообщений
+        self.scroll_area = QtWidgets.QScrollArea(self)
+        self.scroll_area.setWidgetResizable(True)
+
+        # Создаем виджет для размещения сообщений
+        self.messages_widget = QtWidgets.QWidget()
+        self.messages_widget.setStyleSheet("QWidget{"
+                                        "background-color: white;"
+                                        "}")
+        self.messages_layout = QtWidgets.QVBoxLayout(self.messages_widget)
+
+        self.scroll_area.setWidget(self.messages_widget)
+        self.layout.addWidget(self.scroll_area)
+
+        # Создаем текстовое поле для ввода пути к изображению
+        self.image_path_input = QtWidgets.QLineEdit(self)
+        self.image_path_input.setStyleSheet("QLineEdit{"
+                                        "background-color: white;"
+                                        "border: 2px solid blue;"
+                                        "border-radius: 10px;"
+                                        "padding: 5px;"
+                                        "}"
+                                        "QPushButton:hover {"
+                                        "background-color: lightblue;"
+                                        "}")
+        self.image_path_input.setPlaceholderText("Введите абсолютный путь к изображению...")
+        self.layout.addWidget(self.image_path_input)
+
+        # Создаем кнопку для отправки изображения
+        self.send_button = QtWidgets.QPushButton("Отправить изображение", self)
+        self.send_button.setStyleSheet("QPushButton {"
+                                        "background-color: white;"
+                                        "border: 2px solid blue;"
+                                        "border-radius: 10px;"
+                                        "padding: 5px;"
+                                        "}"
+                                        "QPushButton:hover {"
+                                        "background-color: lightblue;"
+                                        "}")
+        self.send_button.clicked.connect(self.send_image)
+        self.layout.addWidget(self.send_button)
+
+    def send_image(self):
+        image_path = self.image_path_input.text()
+        if image_path:
+            self.add_user_image(image_path)  # Отправляем изображение от пользователя
+            self.add_bot_image(image_path)    # Бот отправляет то же изображение
+            self.image_path_input.clear()      # Очищаем поле ввода после отправки
+
+    def add_user_image(self, image_path):
+        try:
+            pixmap = QtGui.QPixmap(image_path)
+            if not pixmap.isNull():
+                user_image_label = QtWidgets.QLabel("Вы:")
+                user_image_label.setAlignment(QtCore.Qt.AlignmentFlag.AlignLeft)
+                self.messages_layout.addWidget(user_image_label)
+
+                image_label = QtWidgets.QLabel()
+                image_label.setPixmap(pixmap.scaled(300, 300, QtCore.Qt.AspectRatioMode.KeepAspectRatio))
+                image_label.setAlignment(QtCore.Qt.AlignmentFlag.AlignLeft)
+                self.messages_layout.addWidget(image_label)
+            else:
+                self.add_message("Ошибка: Невозможно загрузить изображение.")
+        except Exception as e:
+            self.add_message(f"Ошибка: {str(e)}")
+
+    def add_bot_image(self, image_path):
+        try:
+            pixmap = QtGui.QPixmap(image_path)
+            if not pixmap.isNull():
+                bot_image_label = QtWidgets.QLabel("Бот:")
+                bot_image_label.setAlignment(QtCore.Qt.AlignmentFlag.AlignRight)
+                self.messages_layout.addWidget(bot_image_label)
+
+                image_label = QtWidgets.QLabel()
+                image_label.setPixmap(pixmap.scaled(300, 300, QtCore.Qt.AspectRatioMode.KeepAspectRatio))
+                image_label.setAlignment(QtCore.Qt.AlignmentFlag.AlignRight)
+                self.messages_layout.addWidget(image_label)
+            else:
+                self.add_message("Ошибка: Невозможно загрузить изображение.")
+        except Exception as e:
+            self.add_message(f"Ошибка: {str(e)}")
+
+    def add_message(self, message):
+        message_label = QtWidgets.QLabel(message)
+        message_label.setWordWrap(True)
+
+# Записываем input
+def add_input_to_database(id, variable):
+    connection = sqlite3.connect('Data_base2.db')
+    cursor = connection.cursor()
+
+    # Проверяем, существует ли запись с данным id
+    cursor.execute('SELECT * FROM Input_cmd WHERE id = ?', (id,))
+    row = cursor.fetchone()
+
+    if row:
+        # Если запись существует, обновляем её
+        cursor.execute('UPDATE Input_cmd SET value = ? WHERE id = ?', (variable, id))
+        print(f"Запись с id {id} обновлена.")
+    else:
+        # Если записи нет, вставляем новую
+        cursor.execute('INSERT INTO Input_cmd (id, value) VALUES (?, ?)', (id, variable))
+        print(f"Запись с id {id} добавлена.")
+
+    connection.commit()
+    connection.close()
+
+
+# Записываем output
+def create_output_table():
+    connection = sqlite3.connect('Data_base2.db')
+    cursor = connection.cursor()
+
+    # Создаем таблицу Output_cmd, если она не существует
+    cursor.execute('''
+        CREATE TABLE IF NOT EXISTS Output_cmd (
+            id INTEGER PRIMARY KEY,
+            value TEXT
+        )
+    ''')
+
+    connection.commit()
+    connection.close()
+
+
+def add_output_to_database(id, variable):
+    create_output_table()  # Убедимся, что таблица существует
+
+    connection = sqlite3.connect('Data_base2.db')
+    cursor = connection.cursor()
+
+    # Проверяем, существует ли запись с данным id
+    cursor.execute('SELECT * FROM Output_cmd WHERE id = ?', (id,))
+    row = cursor.fetchone()
+
+    if row:
+        # Если запись существует, обновляем её
+        cursor.execute('UPDATE Output_cmd SET value = ? WHERE id = ?', (variable, id))
+        print(f"Запись с id {id} в таблице Output_cmd обновлена.")
+    else:
+        # Если записи нет, вставляем новую
+        cursor.execute('INSERT INTO Output_cmd (id, value) VALUES (?, ?)', (id, variable))
+        print(f"Запись с id {id} в таблице Output_cmd добавлена.")
+
+    connection.commit()
+    connection.close()
+
+# Очистка
+def clear_all_tables(database_name="Data_base2.db"):
+    # Подключаемся к базе данных
+    conn = sqlite3.connect(database_name)
+    cursor = conn.cursor()
+
+    try:
+        # Получаем список всех таблиц
+        cursor.execute("SELECT name FROM sqlite_master WHERE type='table';")
+        tables = cursor.fetchall()
+
+        # Удаляем данные из каждой таблицы
+        for table in tables:
+            table_name = table[0]
+            cursor.execute(f"DELETE FROM {table_name}")
+            print(f"Все данные из таблицы '{table_name}' были удалены.")
+
+        # Сохраняем изменения
+        conn.commit()
+    except sqlite3.Error as e:
+        print(f"Ошибка при удалении данных: {e}")
+    finally:
+        # Закрываем соединение
+        cursor.close()
+        conn.close()
+
+
 if __name__ == '__main__':
+    #clear_all_tables()
     app = QApplication(sys.argv)
     ex = MyWidget()
     ex.show()
