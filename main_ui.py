@@ -12,7 +12,7 @@ from PyQt6 import QtCore, QtGui, QtWidgets
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(1054, 639)
+        MainWindow.resize(997, 633)
         self.centralwidget = QtWidgets.QWidget(parent=MainWindow)
         self.centralwidget.setEnabled(True)
         self.centralwidget.setAutoFillBackground(False)
@@ -281,21 +281,21 @@ class Ui_MainWindow(object):
         self.scrollArea.setWidgetResizable(True)
         self.scrollArea.setObjectName("scrollArea")
         self.scrollAreaWidgetContents_4 = QtWidgets.QWidget()
-        self.scrollAreaWidgetContents_4.setGeometry(QtCore.QRect(0, 0, 926, 532))
+        self.scrollAreaWidgetContents_4.setGeometry(QtCore.QRect(0, 0, 869, 526))
         self.scrollAreaWidgetContents_4.setObjectName("scrollAreaWidgetContents_4")
         self.verticalLayout_2 = QtWidgets.QVBoxLayout(self.scrollAreaWidgetContents_4)
         self.verticalLayout_2.setObjectName("verticalLayout_2")
         self.welcome_message_button = QtWidgets.QPushButton(parent=self.scrollAreaWidgetContents_4)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Policy.Minimum, QtWidgets.QSizePolicy.Policy.Maximum)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Policy.Minimum, QtWidgets.QSizePolicy.Policy.Minimum)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.welcome_message_button.sizePolicy().hasHeightForWidth())
         self.welcome_message_button.setSizePolicy(sizePolicy)
-        self.welcome_message_button.setMinimumSize(QtCore.QSize(500, 120))
+        self.welcome_message_button.setMinimumSize(QtCore.QSize(500, 60))
         self.welcome_message_button.setStyleSheet("QPushButton{\n"
 "    border-radius: 40px;\n"
 "    background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(96, 86, 255, 255), stop:1 rgba(179, 146, 221, 255));\n"
-"    font: 63 56pt \"Oceanwide QLt\";\n"
+"    font: 36pt \"Oceanwide QLt\";\n"
 "    color: rgb(255, 255, 255);\n"
 "}\n"
 "")
@@ -327,6 +327,6 @@ class Ui_MainWindow(object):
         self.comboBox.setItemText(0, _translate("MainWindow", "Bot 1"))
         self.comboBox.setItemText(1, _translate("MainWindow", "Bot 2"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_2), _translate("MainWindow", "Tab 2"))
-        self.label_3.setText(_translate("MainWindow", "API token:"))
+        self.label_3.setText(_translate("MainWindow", "Bot name:"))
         self.welcome_message_button.setText(_translate("MainWindow", "/welcome Message"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab), _translate("MainWindow", "Tab 1"))
