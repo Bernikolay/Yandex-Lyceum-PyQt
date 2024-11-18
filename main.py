@@ -85,6 +85,8 @@ class MyWidget(QMainWindow, Ui_MainWindow):
         self.bot_name, ok_pressed = QInputDialog.getText(self, "Название", "Название:........")
         if ok_pressed:
             print(self.bot_name)
+            with open('Bot_description.txt', 'w') as f:
+                f.write(self.bot_name)
 
     def add_action(self):
         dialog = QDialog(self)
@@ -95,7 +97,7 @@ class MyWidget(QMainWindow, Ui_MainWindow):
 
         action, ok_pressed = QInputDialog.getItem(
             dialog, "Ввод", "",
-            ("Стандартная команда", "2",), 0, False)
+            ("Стандартная команда", "Start message",), 0, False)
 
         if ok_pressed:
             print(action)
