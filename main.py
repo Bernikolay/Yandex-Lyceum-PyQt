@@ -86,15 +86,16 @@ class MyWidget(QMainWindow, Ui_MainWindow):
         self.bot_name = ""
         super().__init__()
         self.setupUi(self)
+        self.pixmap = QPixmap('Assets/chat1.jpg')
+        self.label.setPixmap(self.pixmap)
         #Buttons
         self.pushButton_5.clicked.connect(self.add_name)
         self.plus_button.clicked.connect(self.add_action)
         #self.plus_button_2.clicked.connect(self.add_action)
-        self.plus_button_3.clicked.connect(self.add_action)
         self.pause_button.clicked.connect(self.pause)
         self.run_bot_button.clicked.connect(self.run_bot)
-        self.welcome_message_button.clicked.connect(self.edit_cmd_start)
-        self.undo_button.clicked.connect(self.clear_all())
+        #self.welcome_message_button.clicked.connect(self.edit_cmd_start)
+        self.undo_button.clicked.connect(self.clear_all)
 
     def clear_all(self):
         clear_all_tables()
