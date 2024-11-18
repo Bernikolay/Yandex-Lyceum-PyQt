@@ -56,20 +56,6 @@ class Ui_Form(object):
         self.widget_2.setObjectName("widget_2")
         self.horizontalLayout = QtWidgets.QHBoxLayout(self.widget_2)
         self.horizontalLayout.setObjectName("horizontalLayout")
-        self.cancel_button_start = QtWidgets.QPushButton(parent=self.widget_2)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Policy.Fixed, QtWidgets.QSizePolicy.Policy.Fixed)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.cancel_button_start.sizePolicy().hasHeightForWidth())
-        self.cancel_button_start.setSizePolicy(sizePolicy)
-        self.cancel_button_start.setMinimumSize(QtCore.QSize(200, 0))
-        self.cancel_button_start.setStyleSheet("QPushButton{\n"
-"    border-radius: 5px;\n"
-"    height: 30px;\n"
-"    background-color: rgb(115, 114, 243);\n"
-"}")
-        self.cancel_button_start.setObjectName("cancel_button_start")
-        self.horizontalLayout.addWidget(self.cancel_button_start)
         self.ok_button_start = QtWidgets.QPushButton(parent=self.widget_2)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Policy.Fixed, QtWidgets.QSizePolicy.Policy.Maximum)
         sizePolicy.setHorizontalStretch(0)
@@ -80,7 +66,7 @@ class Ui_Form(object):
         self.ok_button_start.setStyleSheet("QPushButton{\n"
 "    border-radius: 5px;\n"
 "    height: 30px;\n"
-"    background-color:rgb(64, 149, 233);\n"
+"    background-color:qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(115, 114, 243, 255), stop:1 rgba(64, 149, 233, 255));\n"
 "}")
         self.ok_button_start.setObjectName("ok_button_start")
         self.horizontalLayout.addWidget(self.ok_button_start)
@@ -95,5 +81,4 @@ class Ui_Form(object):
         self.checkBox_2.setText(_translate("Form", "Картинка"))
         self.label_3.setText(_translate("Form", "Стартовое сообщение:"))
         self.label.setText(_translate("Form", "Текст"))
-        self.cancel_button_start.setText(_translate("Form", "Отмена"))
         self.ok_button_start.setText(_translate("Form", "Готово"))

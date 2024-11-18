@@ -39,13 +39,9 @@ class Ui_Form(object):
         self.label_2 = QtWidgets.QLabel(parent=self.widget)
         self.label_2.setObjectName("label_2")
         self.gridLayout.addWidget(self.label_2, 3, 0, 1, 1)
-        self.checkBox = QtWidgets.QCheckBox(parent=self.widget)
-        self.checkBox.setStyleSheet("")
-        self.checkBox.setObjectName("checkBox")
-        self.gridLayout.addWidget(self.checkBox, 1, 2, 1, 1)
-        self.checkBox_2 = QtWidgets.QCheckBox(parent=self.widget)
-        self.checkBox_2.setObjectName("checkBox_2")
-        self.gridLayout.addWidget(self.checkBox_2, 3, 2, 1, 1)
+        self.checkBox_output_image = QtWidgets.QCheckBox(parent=self.widget)
+        self.checkBox_output_image.setObjectName("checkBox_output_image")
+        self.gridLayout.addWidget(self.checkBox_output_image, 3, 2, 1, 1)
         self.lineEditOutput = QtWidgets.QLineEdit(parent=self.widget)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Expanding)
         sizePolicy.setHorizontalStretch(0)
@@ -79,20 +75,6 @@ class Ui_Form(object):
         self.widget_2.setObjectName("widget_2")
         self.horizontalLayout = QtWidgets.QHBoxLayout(self.widget_2)
         self.horizontalLayout.setObjectName("horizontalLayout")
-        self.cancel_button = QtWidgets.QPushButton(parent=self.widget_2)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Policy.Fixed, QtWidgets.QSizePolicy.Policy.Fixed)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.cancel_button.sizePolicy().hasHeightForWidth())
-        self.cancel_button.setSizePolicy(sizePolicy)
-        self.cancel_button.setMinimumSize(QtCore.QSize(200, 0))
-        self.cancel_button.setStyleSheet("QPushButton{\n"
-"    border-radius: 5px;\n"
-"    height: 30px;\n"
-"    background-color: rgb(115, 114, 243);\n"
-"}")
-        self.cancel_button.setObjectName("cancel_button")
-        self.horizontalLayout.addWidget(self.cancel_button)
         self.ok_button = QtWidgets.QPushButton(parent=self.widget_2)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Policy.Fixed, QtWidgets.QSizePolicy.Policy.Maximum)
         sizePolicy.setHorizontalStretch(0)
@@ -103,7 +85,7 @@ class Ui_Form(object):
         self.ok_button.setStyleSheet("QPushButton{\n"
 "    border-radius: 5px;\n"
 "    height: 30px;\n"
-"    background-color:rgb(64, 149, 233);\n"
+"    background-color:qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(115, 114, 243, 255), stop:1 rgba(64, 149, 233, 255));\n"
 "}")
         self.ok_button.setObjectName("ok_button")
         self.horizontalLayout.addWidget(self.ok_button)
@@ -117,9 +99,7 @@ class Ui_Form(object):
         _translate = QtCore.QCoreApplication.translate
         Form.setWindowTitle(_translate("Form", "Form"))
         self.label_2.setText(_translate("Form", "Вывод"))
-        self.checkBox.setText(_translate("Form", "Картинка"))
-        self.checkBox_2.setText(_translate("Form", "Картинка"))
+        self.checkBox_output_image.setText(_translate("Form", "Картинка"))
         self.label_3.setText(_translate("Form", "Редактор команд:"))
         self.label.setText(_translate("Form", "Ввод"))
-        self.cancel_button.setText(_translate("Form", "Отмена"))
-        self.ok_button.setText(_translate("Form", "Готово"))
+        self.ok_button.setText(_translate("Form", "OK"))

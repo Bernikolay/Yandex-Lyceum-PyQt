@@ -17,6 +17,9 @@ class ChatApp(QtWidgets.QWidget):
 
         # Создаем виджет для размещения сообщений
         self.messages_widget = QtWidgets.QWidget()
+        self.messages_widget.setStyleSheet("QWidget{"
+                                        "background-color: white;"
+                                        "}")
         self.messages_layout = QtWidgets.QVBoxLayout(self.messages_widget)
 
         self.scroll_area.setWidget(self.messages_widget)
@@ -24,11 +27,29 @@ class ChatApp(QtWidgets.QWidget):
 
         # Создаем текстовое поле для ввода пути к изображению
         self.image_path_input = QtWidgets.QLineEdit(self)
+        self.image_path_input.setStyleSheet("QLineEdit{"
+                                        "background-color: white;"
+                                        "border: 2px solid blue;"
+                                        "border-radius: 10px;"
+                                        "padding: 5px;"
+                                        "}"
+                                        "QPushButton:hover {"
+                                        "background-color: lightblue;"
+                                        "}")
         self.image_path_input.setPlaceholderText("Введите абсолютный путь к изображению...")
         self.layout.addWidget(self.image_path_input)
 
         # Создаем кнопку для отправки изображения
         self.send_button = QtWidgets.QPushButton("Отправить изображение", self)
+        self.send_button.setStyleSheet("QPushButton {"
+                                        "background-color: white;"
+                                        "border: 2px solid blue;"
+                                        "border-radius: 10px;"
+                                        "padding: 5px;"
+                                        "}"
+                                        "QPushButton:hover {"
+                                        "background-color: lightblue;"
+                                        "}")
         self.send_button.clicked.connect(self.send_image)
         self.layout.addWidget(self.send_button)
 
@@ -76,7 +97,6 @@ class ChatApp(QtWidgets.QWidget):
     def add_message(self, message):
         message_label = QtWidgets.QLabel(message)
         message_label.setWordWrap(True)
-        self.messages_layout.addWidget(message_label)
 
 if __name__ == "__main__":
     app = QtWidgets.QApplication(sys.argv)

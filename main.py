@@ -46,24 +46,26 @@ class AnotherWindow(QWidget, Ui_Form):
     def __init__(self):
         super().__init__()
         self.setupUi(self)
-        self.image1 = False
-        self.ok_button.clicked.connect(self.get_text_input)
-        self.checkBox_2.stateChanged.connect(self.on_checkbox_changed)
+        self.image = False
+        self.ok_button.clicked.connect(self.get_text)
+        self.checkBox_output_image.stateChanged.connect(self.on_checkbox_changed)
 
-    def get_text_input(self):
+    def get_text(self):
         # lineEdit
-        text = self.lineEdit_2.text()
+        text = self.lineEditInput.text()
+        text_output = self.lineEditOutput.text()
         print(text)
+        print(text_output)
 
     def on_checkbox_changed(self):
         self.image = not self.image
         if self.image:
             self.img_msg()
         else:
-            self.lineEdit_2.setText("")
+            self.lineEditOutput.setText("")
 
     def img_msg(self):
-        self.lineEdit_2.setText("Укажите путь к картинке!")
+        self.lineEditOutput.setText("Укажите путь к картинке!")
 
 class MyWidget(QMainWindow, Ui_MainWindow):
     def __init__(self):
@@ -93,13 +95,13 @@ class MyWidget(QMainWindow, Ui_MainWindow):
 
         action, ok_pressed = QInputDialog.getItem(
             dialog, "Ввод", "",
-            ("Текст-Текст", "B", "C", "D"), 0, False)
+            ("Стандартная команда", "2",), 0, False)
 
         if ok_pressed:
             print(action)
-            if action == "Текст-Текст":
+            if action == "Стандартная команда":
                 self.button_layout = self.scrollAreaWidgetContents_4.layout()
-                new_button = QPushButton(f"/команда {self.button_layout.count() - 2}", self)
+                new_button = QPushButton(f"/команда {self.button_layout.count() - 1}", self)
                 new_button.setSizePolicy(
                     QtWidgets.QSizePolicy.Policy.Minimum,
                     QtWidgets.QSizePolicy.Policy.Maximum
