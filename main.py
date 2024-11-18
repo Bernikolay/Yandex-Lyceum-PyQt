@@ -1,5 +1,6 @@
 #pyuic6 Designer.ui -o main_ui.py
 #pyuic6 CMDedit.ui -o cmd_ui.py
+#pyuic6 CMD_start_edit.ui -o cmd_start_ui.py
 import sys
 from PyQt6 import QtCore, QtGui, QtWidgets
 from PyQt6.QtWidgets import (QApplication,
@@ -15,19 +16,58 @@ from PyQt6.QtWidgets import (QApplication,
 
 from main_ui import Ui_MainWindow
 from cmd_ui import Ui_Form
+from cmd_start_ui import Ui_Form as Ui_Form_start
 
-class AnotherWindow(QWidget, Ui_Form):
-    """
-    123
-    """
-
+class CMDStartEdit(QWidget, Ui_Form_start):
     def __init__(self):
         super().__init__()
         self.setupUi(self)
+        self.image = False
+        self.ok_button_start.clicked.connect(self.get_text)
+        self.checkBox_2.stateChanged.connect(self.on_checkbox_changed)
+
+    def get_text(self):
+        #lineEdit
+        text = self.lineEdit_2.text()
+        print(text)
+
+    def on_checkbox_changed(self):
+        self.image = not self.image
+        if self.image:
+            self.img_msg()
+        else:
+            self.lineEdit_2.setText("")
+
+    def img_msg(self):
+        self.lineEdit_2.setText("Укажите путь к картинке!")
+
+
+class AnotherWindow(QWidget, Ui_Form):
+    def __init__(self):
+        super().__init__()
+        self.setupUi(self)
+        self.image1 = False
+        self.ok_button.clicked.connect(self.get_text_input)
+        self.checkBox_2.stateChanged.connect(self.on_checkbox_changed)
+
+    def get_text_input(self):
+        # lineEdit
+        text = self.lineEdit_2.text()
+        print(text)
+
+    def on_checkbox_changed(self):
+        self.image = not self.image
+        if self.image:
+            self.img_msg()
+        else:
+            self.lineEdit_2.setText("")
+
+    def img_msg(self):
+        self.lineEdit_2.setText("Укажите путь к картинке!")
 
 class MyWidget(QMainWindow, Ui_MainWindow):
     def __init__(self):
-        self.api_token = ""
+        self.bot_name = ""
         super().__init__()
         self.setupUi(self)
         #Buttons
@@ -37,11 +77,12 @@ class MyWidget(QMainWindow, Ui_MainWindow):
         self.plus_button_3.clicked.connect(self.add_action)
         self.pause_button.clicked.connect(self.pause)
         self.run_bot_button.clicked.connect(self.run_bot)
+        self.welcome_message_button.clicked.connect(self.edit_cmd_start)
 
     def add_name(self):
-        self.api_token, ok_pressed = QInputDialog.getText(self, "Название", "Название:........")
+        self.bot_name, ok_pressed = QInputDialog.getText(self, "Название", "Название:........")
         if ok_pressed:
-            print(self.api_token)
+            print(self.bot_name)
 
     def add_action(self):
         dialog = QDialog(self)
@@ -89,6 +130,13 @@ class MyWidget(QMainWindow, Ui_MainWindow):
 
     def edit_cmd(self):
         self.window1 = AnotherWindow()
+        if self.window1.isVisible():
+            self.window1.hide()
+        else:
+            self.window1.show()
+
+    def edit_cmd_start(self):
+        self.window1 = CMDStartEdit()
         if self.window1.isVisible():
             self.window1.hide()
         else:

@@ -69,7 +69,7 @@ color:rgb(13, 9, 39);
 </string>
              </property>
              <property name="text">
-              <string>Welcome......</string>
+              <string>Welcome</string>
              </property>
             </widget>
            </item>
@@ -366,32 +366,6 @@ color:rgb(54, 54, 54);
             <property name="icon">
              <iconset>
               <normaloff>Assets/Buttons/undo_button.png</normaloff>Assets/Buttons/undo_button.png</iconset>
-            </property>
-            <property name="iconSize">
-             <size>
-              <width>100</width>
-              <height>100</height>
-             </size>
-            </property>
-            <property name="flat">
-             <bool>true</bool>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QPushButton" name="plus_button_3">
-            <property name="maximumSize">
-             <size>
-              <width>50</width>
-              <height>70</height>
-             </size>
-            </property>
-            <property name="text">
-             <string/>
-            </property>
-            <property name="icon">
-             <iconset>
-              <normaloff>Assets/Buttons/plus_button.png</normaloff>Assets/Buttons/plus_button.png</iconset>
             </property>
             <property name="iconSize">
              <size>
