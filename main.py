@@ -2,8 +2,10 @@
 #pyuic6 CMDedit.ui -o cmd_ui.py
 #pyuic6 CMD_start_edit.ui -o cmd_start_ui.py
 import sqlite3
+import os
 import sys
 from PyQt6 import QtCore, QtGui, QtWidgets
+from PyQt6.QtGui import QPixmap
 from PyQt6.QtWidgets import (QApplication,
                              QMainWindow,
                              QDialog,
@@ -92,7 +94,10 @@ class MyWidget(QMainWindow, Ui_MainWindow):
         self.pause_button.clicked.connect(self.pause)
         self.run_bot_button.clicked.connect(self.run_bot)
         self.welcome_message_button.clicked.connect(self.edit_cmd_start)
+        self.undo_button.clicked.connect(self.clear_all())
 
+    def clear_all(self):
+        clear_all_tables()
     def add_name(self):
         self.bot_name, ok_pressed = QInputDialog.getText(self, "Название", "Название:........")
         if ok_pressed:
@@ -192,9 +197,6 @@ class ChatApp(QtWidgets.QWidget):
 
         # Создаем виджет для размещения сообщений
         self.messages_widget = QtWidgets.QWidget()
-        self.messages_widget.setStyleSheet("QWidget{"
-                                           "background-color: white;"
-                                           "}")
         self.messages_layout = QtWidgets.QVBoxLayout(self.messages_widget)
 
         self.scroll_area.setWidget(self.messages_widget)
@@ -202,29 +204,29 @@ class ChatApp(QtWidgets.QWidget):
 
         # Создаем поле ввода текста
         self.input_field = QtWidgets.QLineEdit(self)
-        self.input_field.setStyleSheet("QLineEdit{"
-                                            "background-color: white;"
-                                            "border: 2px solid blue;"
-                                            "border-radius: 10px;"
-                                            "padding: 5px;"
-                                            "}"
-                                            "QPushButton:hover {"
-                                            "background-color: lightblue;"
-                                            "}")
         self.input_field.setPlaceholderText("Введите ваше сообщение...")
+        self.input_field.setStyleSheet("QLineEdit{"
+                                       "background-color: white;"
+                                       "border: 2px solid blue;"
+                                       "border-radius: 10px;"
+                                       "padding: 5px;"
+                                       "}"
+                                       "QPushButton:hover {"
+                                       "background-color: lightblue;"
+                                       "}")
         self.layout.addWidget(self.input_field)
 
         # Создаем кнопку отправки
         self.send_button = QtWidgets.QPushButton("Отправить", self)
         self.send_button.setStyleSheet(("QPushButton{"
-                                            "background-color: white;"
-                                            "border: 2px solid blue;"
-                                            "border-radius: 10px;"
-                                            "padding: 5px;"
-                                            "}"
-                                            "QPushButton:hover {"
-                                            "background-color: lightblue;"
-                                            "}"))
+                                   "background-color: white;"
+                                   "border: 2px solid blue;"
+                                   "border-radius: 10px;"
+                                   "padding: 5px;"
+                                   "}"
+                                   "QPushButton:hover {"
+                                   "background-color: lightblue;"
+                                   "}"))
         self.send_button.clicked.connect(self.send_message)
         self.layout.addWidget(self.send_button)
 
@@ -241,7 +243,12 @@ class ChatApp(QtWidgets.QWidget):
             # Получаем ответ от бота
             bot_response = self.get_bot_response(message_text)
             if bot_response:
-                self.add_message("Бот: " + bot_response)
+                if bot_response.startswith('\\'):
+                    # Если ответ начинается с \, загружаем изображение по указанному пути
+                    image_path = bot_response[2:].strip()  # Убираем символ \
+                    self.add_image(image_path)
+                else:
+                    self.add_message("Бот: " + bot_response)
             else:
                 self.add_message("Бот: Извините, я не понимаю.")
 
@@ -267,8 +274,22 @@ class ChatApp(QtWidgets.QWidget):
         message_label.setWordWrap(True)
         self.messages_layout.addWidget(message_label)
 
+    def add_image(self, image_path):
+        # Проверка существования файла
+        if os.path.isfile(image_path):
+            pixmap = QPixmap(image_path)  # Загружаем изображение из файла
+
+            image_label = QtWidgets.QLabel()
+            image_label.setPixmap(pixmap)
+            image_label.setScaledContents(True)  # Масштабирование содержимого
+            image_label.setFixedSize(300, 300)   # Установка фиксированного размера для изображения
+            self.messages_layout.addWidget(image_label)
+        else:
+            self.add_message("Бот: Не удалось найти изображение по указанному пути.")
+            print(image_path)
+
     def closeEvent(self, event):
-        # Закрытие соединения с базой данных при выходе
+        # Закрытие соединения с базой д
         self.connection.close()
         event.accept()
 
