@@ -193,85 +193,84 @@ class ChatApp(QtWidgets.QWidget):
         # Создаем виджет для размещения сообщений
         self.messages_widget = QtWidgets.QWidget()
         self.messages_widget.setStyleSheet("QWidget{"
-                                        "background-color: white;"
-                                        "}")
+                                           "background-color: white;"
+                                           "}")
         self.messages_layout = QtWidgets.QVBoxLayout(self.messages_widget)
 
         self.scroll_area.setWidget(self.messages_widget)
         self.layout.addWidget(self.scroll_area)
 
-        # Создаем текстовое поле для ввода пути к изображению
-        self.image_path_input = QtWidgets.QLineEdit(self)
-        self.image_path_input.setStyleSheet("QLineEdit{"
-                                        "background-color: white;"
-                                        "border: 2px solid blue;"
-                                        "border-radius: 10px;"
-                                        "padding: 5px;"
-                                        "}"
-                                        "QPushButton:hover {"
-                                        "background-color: lightblue;"
-                                        "}")
-        self.image_path_input.setPlaceholderText("Введите абсолютный путь к изображению...")
-        self.layout.addWidget(self.image_path_input)
+        # Создаем поле ввода текста
+        self.input_field = QtWidgets.QLineEdit(self)
+        self.input_field.setStyleSheet("QLineEdit{"
+                                            "background-color: white;"
+                                            "border: 2px solid blue;"
+                                            "border-radius: 10px;"
+                                            "padding: 5px;"
+                                            "}"
+                                            "QPushButton:hover {"
+                                            "background-color: lightblue;"
+                                            "}")
+        self.input_field.setPlaceholderText("Введите ваше сообщение...")
+        self.layout.addWidget(self.input_field)
 
-        # Создаем кнопку для отправки изображения
-        self.send_button = QtWidgets.QPushButton("Отправить изображение", self)
-        self.send_button.setStyleSheet("QPushButton {"
-                                        "background-color: white;"
-                                        "border: 2px solid blue;"
-                                        "border-radius: 10px;"
-                                        "padding: 5px;"
-                                        "}"
-                                        "QPushButton:hover {"
-                                        "background-color: lightblue;"
-                                        "}")
-        self.send_button.clicked.connect(self.send_image)
+        # Создаем кнопку отправки
+        self.send_button = QtWidgets.QPushButton("Отправить", self)
+        self.send_button.setStyleSheet(("QPushButton{"
+                                            "background-color: white;"
+                                            "border: 2px solid blue;"
+                                            "border-radius: 10px;"
+                                            "padding: 5px;"
+                                            "}"
+                                            "QPushButton:hover {"
+                                            "background-color: lightblue;"
+                                            "}"))
+        self.send_button.clicked.connect(self.send_message)
         self.layout.addWidget(self.send_button)
 
-    def send_image(self):
-        image_path = self.image_path_input.text()
-        if image_path:
-            self.add_user_image(image_path)  # Отправляем изображение от пользователя
-            self.add_bot_image(image_path)    # Бот отправляет то же изображение
-            self.image_path_input.clear()      # Очищаем поле ввода после отправки
+        # Подключение к базе данных
+        self.connection = sqlite3.connect('Data_base2.db')
+        self.cursor = self.connection.cursor()
 
-    def add_user_image(self, image_path):
-        try:
-            pixmap = QtGui.QPixmap(image_path)
-            if not pixmap.isNull():
-                user_image_label = QtWidgets.QLabel("Вы:")
-                user_image_label.setAlignment(QtCore.Qt.AlignmentFlag.AlignLeft)
-                self.messages_layout.addWidget(user_image_label)
+    def send_message(self):
+        message_text = self.input_field.text().strip()
+        if message_text:
+            # Добавляем сообщение пользователя
+            self.add_message("Вы: " + message_text)
 
-                image_label = QtWidgets.QLabel()
-                image_label.setPixmap(pixmap.scaled(300, 300, QtCore.Qt.AspectRatioMode.KeepAspectRatio))
-                image_label.setAlignment(QtCore.Qt.AlignmentFlag.AlignLeft)
-                self.messages_layout.addWidget(image_label)
+            # Получаем ответ от бота
+            bot_response = self.get_bot_response(message_text)
+            if bot_response:
+                self.add_message("Бот: " + bot_response)
             else:
-                self.add_message("Ошибка: Невозможно загрузить изображение.")
-        except Exception as e:
-            self.add_message(f"Ошибка: {str(e)}")
+                self.add_message("Бот: Извините, я не понимаю.")
 
-    def add_bot_image(self, image_path):
+            # Очищаем поле ввода
+            self.input_field.clear()
+
+            # Прокручиваем вниз к последнему сообщению
+            self.scroll_area.verticalScrollBar().setValue(self.scroll_area.verticalScrollBar().maximum())
+
+    def get_bot_response(self, user_input):
+        # Поиск ответа в базе данных
         try:
-            pixmap = QtGui.QPixmap(image_path)
-            if not pixmap.isNull():
-                bot_image_label = QtWidgets.QLabel("Бот:")
-                bot_image_label.setAlignment(QtCore.Qt.AlignmentFlag.AlignRight)
-                self.messages_layout.addWidget(bot_image_label)
-
-                image_label = QtWidgets.QLabel()
-                image_label.setPixmap(pixmap.scaled(300, 300, QtCore.Qt.AspectRatioMode.KeepAspectRatio))
-                image_label.setAlignment(QtCore.Qt.AlignmentFlag.AlignRight)
-                self.messages_layout.addWidget(image_label)
-            else:
-                self.add_message("Ошибка: Невозможно загрузить изображение.")
+            query = "SELECT value FROM Output_cmd WHERE id IN (SELECT id FROM Input_cmd WHERE value = ?)"
+            self.cursor.execute(query, (user_input,))
+            result = self.cursor.fetchone()
+            return result[0] if result else None
         except Exception as e:
-            self.add_message(f"Ошибка: {str(e)}")
+            print(f"Ошибка при получении ответа: {e}")
+            return None
 
     def add_message(self, message):
         message_label = QtWidgets.QLabel(message)
         message_label.setWordWrap(True)
+        self.messages_layout.addWidget(message_label)
+
+    def closeEvent(self, event):
+        # Закрытие соединения с базой данных при выходе
+        self.connection.close()
+        event.accept()
 
 # Записываем input
 def add_input_to_database(id, variable):
