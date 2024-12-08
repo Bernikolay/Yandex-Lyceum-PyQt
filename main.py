@@ -65,13 +65,22 @@ class AnotherWindow(QWidget, Ui_Form):
         self.cursor = self.connection.cursor()
 
         try:
+            query = "SELECT value FROM Input_cmd WHERE id = ?"
+            self.cursor.execute(query, (current_button, ))
+            result = self.cursor.fetchone()
+            print(result[0], "Успех input pullup")
+            self.lineEditInput.setText(str(result[0]))
+        except Exception as e:
+            print("Ошибка input pullup")
+
+        '''try:
             query = "SELECT value FROM Input_cmd WHERE id = 1"
             self.cursor.execute(query)
             result = self.cursor.fetchone()
-            print(result[0], "Успех")
+            print(result[0], "Успех input pullup")
             self.lineEditInput.setText(str(result[0]))
         except Exception as e:
-            print("Ошибка")
+            print("Ошибка input pullup")'''
 
         text_input = self.lineEditInput.text()
         text_output = self.lineEditOutput.text()
