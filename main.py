@@ -54,10 +54,25 @@ class AnotherWindow(QWidget, Ui_Form):
         self.image = False
         self.ok_button.clicked.connect(self.get_text)
         self.checkBox_output_image.stateChanged.connect(self.on_checkbox_changed)
+        self.get_text()
 
     def get_text(self):
         #lineEdit
         global current_button
+
+        # Подключение к базе данных
+        self.connection = sqlite3.connect('Data_base2.db')
+        self.cursor = self.connection.cursor()
+
+        try:
+            query = "SELECT value FROM Input_cmd WHERE id = 1"
+            self.cursor.execute(query)
+            result = self.cursor.fetchone()
+            print(result[0], "Успех")
+            self.lineEditInput.setText(str(result[0]))
+        except Exception as e:
+            print("Ошибка")
+
         text_input = self.lineEditInput.text()
         text_output = self.lineEditOutput.text()
         print(text_input)
@@ -383,6 +398,7 @@ def clear_all_tables(database_name="Data_base2.db"):
 
 
 if __name__ == '__main__':
+    #Функция для очистки
     #clear_all_tables()
     app = QApplication(sys.argv)
     ex = MyWidget()
