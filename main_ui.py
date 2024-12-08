@@ -127,7 +127,7 @@ class Ui_MainWindow(object):
         self.plus_button.setFlat(True)
         self.plus_button.setObjectName("plus_button")
         self.verticalLayout.addWidget(self.plus_button)
-        self.undo_button = QtWidgets.QPushButton(parent=self.tab)
+        '''self.undo_button = QtWidgets.QPushButton(parent=self.tab)
         self.undo_button.setMaximumSize(QtCore.QSize(50, 70))
         self.undo_button.setText("")
         icon4 = QtGui.QIcon()
@@ -135,8 +135,8 @@ class Ui_MainWindow(object):
         self.undo_button.setIcon(icon4)
         self.undo_button.setIconSize(QtCore.QSize(100, 100))
         self.undo_button.setFlat(True)
-        self.undo_button.setObjectName("undo_button")
-        self.verticalLayout.addWidget(self.undo_button)
+        self.undo_button.setObjectName("undo_button")'''
+        #self.verticalLayout.addWidget(self.undo_button)
         spacerItem1 = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Policy.Minimum, QtWidgets.QSizePolicy.Policy.Expanding)
         self.verticalLayout.addItem(spacerItem1)
         self.gridLayout_2.addLayout(self.verticalLayout, 0, 0, 3, 1)
@@ -253,7 +253,7 @@ class Ui_MainWindow(object):
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
-        self.label_2.setText(_translate("MainWindow", "Добро пожаловать!"))
+        self.label_2.setText(_translate("MainWindow", "Welcome!"))
         self.Hello.setTitle(_translate("MainWindow", " "))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_2), _translate("MainWindow", "Tab 2"))
         self.label_3.setText(_translate("MainWindow", "Bot name:"))
