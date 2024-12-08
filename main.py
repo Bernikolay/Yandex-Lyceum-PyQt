@@ -1,6 +1,3 @@
-#pyuic6 Designer.ui -o main_ui.py
-#pyuic6 CMDedit.ui -o cmd_ui.py
-#pyuic6 CMD_start_edit.ui -o cmd_start_ui.py
 import sqlite3
 import os
 import sys
@@ -423,3 +420,7 @@ if __name__ == '__main__':
     ex = MyWidget()
     ex.show()
     sys.exit(app.exec())
+
+#pyuic6 Designer.ui -o main_ui.py
+#pyuic6 CMDedit.ui -o cmd_ui.py
+#pyuic6 CMD_start_edit.ui -o cmd_start_ui.py
