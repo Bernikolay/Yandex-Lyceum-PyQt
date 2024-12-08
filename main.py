@@ -201,6 +201,12 @@ class MyWidget(QMainWindow, Ui_MainWindow):
         self.msg = QMessageBox()
         self.msg.setWindowTitle("Пауза")
         self.msg.setText("Бот остановлен.")
+        self.window1 = ChatApp()
+        if self.window1.isVisible():
+            self.window1.hide()
+        else:
+            self.window1.hide()
+
         self.msg.exec()
 
     def run_bot(self):
@@ -318,7 +324,7 @@ class ChatApp(QtWidgets.QWidget):
             print(image_path)
 
     def closeEvent(self, event):
-        # Закрытие соединения с базой д
+        # Закрытие соединения с базой данных
         self.connection.close()
         event.accept()
 
@@ -412,7 +418,7 @@ def clear_all_tables(database_name="Data_base2.db"):
 
 if __name__ == '__main__':
     #Функция для очистки
-    clear_all_tables()
+    #clear_all_tables()
     app = QApplication(sys.argv)
     ex = MyWidget()
     ex.show()
