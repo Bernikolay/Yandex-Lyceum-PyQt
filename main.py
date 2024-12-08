@@ -21,7 +21,7 @@ from main_ui import Ui_MainWindow
 from cmd_ui import Ui_Form
 from cmd_start_ui import Ui_Form as Ui_Form_start
 
-current_button = 0
+current_button = 1
 
 class CMDStartEdit(QWidget, Ui_Form_start):
     def __init__(self):
@@ -54,10 +54,9 @@ class AnotherWindow(QWidget, Ui_Form):
         self.image = False
         self.ok_button.clicked.connect(self.get_text)
         self.checkBox_output_image.stateChanged.connect(self.on_checkbox_changed)
-        self.get_text()
+        self.pullup()
 
-    def get_text(self):
-        #lineEdit
+    def pullup(self):
         global current_button
 
         # Подключение к базе данных
@@ -65,28 +64,33 @@ class AnotherWindow(QWidget, Ui_Form):
         self.cursor = self.connection.cursor()
 
         try:
+            print("current button:", current_button)
             query = "SELECT value FROM Input_cmd WHERE id = ?"
-            self.cursor.execute(query, (current_button, ))
+            self.cursor.execute(query, ((current_button),))
             result = self.cursor.fetchone()
             print(result[0], "Успех input pullup")
             self.lineEditInput.setText(str(result[0]))
         except Exception as e:
             print("Ошибка input pullup")
 
-        '''try:
-            query = "SELECT value FROM Input_cmd WHERE id = 1"
-            self.cursor.execute(query)
+        try:
+            print("current button:", current_button)
+            query = "SELECT value FROM Output_cmd WHERE id = ?"
+            self.cursor.execute(query, ((current_button),))
             result = self.cursor.fetchone()
-            print(result[0], "Успех input pullup")
-            self.lineEditInput.setText(str(result[0]))
+            print(result[0], "Успех output pullup")
+            self.lineEditOutput.setText(str(result[0]))
         except Exception as e:
-            print("Ошибка input pullup")'''
+            print("Ошибка output pullup")
 
+    def get_text(self):
+        #lineEdit
+        global current_button
         text_input = self.lineEditInput.text()
         text_output = self.lineEditOutput.text()
         print(text_input)
         print(text_output)
-        print(current_button)
+        #print(current_button)
         add_input_to_database(current_button, text_input)
         is_img_ = 0
         if self.image is True:
@@ -175,14 +179,14 @@ class MyWidget(QMainWindow, Ui_MainWindow):
         print(1)
 
     def edit_cmd(self):
+        global current_button
+        sending_button = self.sender()
+        print(sending_button.text(), "Текст кнопки")
+        current_button = int(sending_button.text()[-1])
         self.window1 = AnotherWindow()
         if self.window1.isVisible():
             self.window1.hide()
         else:
-            global current_button
-            sending_button = self.sender()
-            print(sending_button.text())
-            current_button = int(sending_button.text()[-1])
             self.window1.show()
 
     def edit_cmd_start(self):
@@ -408,7 +412,7 @@ def clear_all_tables(database_name="Data_base2.db"):
 
 if __name__ == '__main__':
     #Функция для очистки
-    #clear_all_tables()
+    clear_all_tables()
     app = QApplication(sys.argv)
     ex = MyWidget()
     ex.show()
