@@ -41,7 +41,7 @@ class CMDStartEdit(QWidget, Ui_Form_start):
             self.lineEdit_2.setText("")
 
     def img_msg(self):
-        self.lineEdit_2.setText("Укажите путь к картинке!")
+        self.lineEdit_2.setText("Укажите путь к картинке! (Два слэша в начале)")
 
 #CMD_EDIT
 class AnotherWindow(QWidget, Ui_Form):
@@ -104,7 +104,7 @@ class AnotherWindow(QWidget, Ui_Form):
             self.lineEditOutput.setText("")
 
     def img_msg(self):
-        self.lineEditOutput.setText("Укажите путь к картинке!")
+        self.lineEditOutput.setText("Укажите путь к картинке! (Два слэша в начале)")
 
 class MyWidget(QMainWindow, Ui_MainWindow):
     def __init__(self):
